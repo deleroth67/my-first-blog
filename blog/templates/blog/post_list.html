@@ -1,38 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-        <title>Frankfurt's Hidden Treasures</title>
-    </head>
-<body>
-    <div>
-      <h1><a href="/">Frankfurt's Hidden Treasures</a></h1>
-      <h2>Discover best sightseeing spots of Frankfurt.</h2>
-      <p>Frankfurt offers a compact but diverse set of sightseeing locations that reflect both its <strong>financial prominence and deep historical roots.</strong> The reconstructed old town, centered around Römerberg, provides a view into medieval architecture, while the nearby Frankfurt Cathedral (Kaiserdom St. Bartholomäus) anchors the city’s imperial past. For a contrast, the skyline along the Main River—often referred to as “Mainhattan”—features modern high-rises such as Main Tower, which includes a public observation deck offering panoramic views.</p>
-      <p>Culturally, the city concentrates major institutions along the Museumsufer, a cluster of museums on both sides of the river, including the renowned Städel Museum with its extensive European art collection. For literary and intellectual context, the Goethe House preserves the birthplace of Johann Wolfgang von Goethe. Finally, green spaces like Palmengarten provide botanical diversity and a quieter counterbalance to the dense urban core.</p>
-    </div>
-    <div>
-      <h2>Top 10 Spots to See in Frankfurt</h2>
-      <ul>
-        <li>Römerberg</li>
-        <li>Frankfurt Cathedral</li>
-        <li>Main Tower</li>
-        <li>Museumsufer</li>
-        <li>Städel Museum</li>
-        <li>Goethe House</li>
-        <li>Palmengarten</li>
-      </ul>
-      <a href="https://djangogirls.org">Discover More</a>
-    </div>
-    <div>
-      {% for post in posts %}
-        <article>
-          <time>published: {{ post.published_date }}</time>
-          <h2><a href="">{{ post.title }}</a></h2>
+{% extends 'blog/base.html' %}
+{% block content %}
+  {% for post in posts %}
+      <article class="post">
+          <time class="date">
+              {{ post.published_date }}
+          </time>
+          <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
           <p>{{ post.text|linebreaksbr }}</p>
-        </article>
-      {% endfor %}
-    </div>
-    <aside>Menu</aside>
-    <footer>Footer Information</footer>       
-</body>
-</html>
+      </article>
+  {% endfor %}
+{% endblock %}
